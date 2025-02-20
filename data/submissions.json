@@ -6,6 +6,12 @@
       "email": "roy.canseco@gmail.com",
       "age": "44",
       "submissionDate": "2025-01-29T01:26:22.383Z"
+    },
+    {
+      "name": "Roy Vincent L. Canseco",
+      "email": "roy@pshs.edu.ph",
+      "age": "40",
+      "submissionDate": "2025-02-20T05:41:02.548Z"
     }
   ],
   "contact": [
@@ -15,9 +21,26 @@
       "preferredTime": "09:26",
       "contactMethod": "email",
       "submissionDate": "2025-01-29T01:26:42.156Z"
+    },
+    {
+      "phone": "123-456-7889",
+      "preferredTime": "13:30",
+      "contactMethod": "email",
+      "submissionDate": "2025-02-20T05:47:15.116Z"
     }
   ],
-  "profile": [],
+  "profile": [
+    {
+      "favoriteColor": "#e01b24",
+      "avatar": "unnamed.png",
+      "submissionDate": "2025-02-20T05:47:45.507Z"
+    }
+  ],
   "interests": [],
-  "terms": []
+  "terms": [
+    {
+      "terms": "on",
+      "submissionDate": "2025-02-20T05:49:18.843Z"
+    }
+  ]
 }
