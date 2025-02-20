@@ -1,0 +1,46 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Submission Tutorial</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="navigation">
+            <a href="/" class="nav-link">Form Examples</a>
+            <a href="/submissions" class="nav-link">View Submissions</a>
+        </nav>
+
+        <div class="container">
+            <div class="form-section">
+                <h2>{{title}}</h2>
+                <div class="output-section">
+                    <h3>Submitted Data:</h3>
+                    <div class="submission-card">
+                        {{#each formData}}
+                            <div class="detail-row">
+                                <strong>{{@key}}:</strong> 
+                                {{#if (isArray this)}}
+                                    {{join this ", "}}
+                                {{else}}
+                                    {{this}}
+                                {{/if}}
+                            </div>
+                        {{/each}}
+                    </div>
+                    <div class="button-group">
+                        <a href="/" class="nav-link">Back to Forms</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

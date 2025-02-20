@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Handlebars (HBS) - Template Tutorial</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Base styles */
+        .code-example {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-family: 'Monaco', 'Consolas', monospace;
+            position: relative;
+            overflow-x: auto;
+        }
+
+        .code-example pre {
+            margin: 0;
+        }
+
+        .code-example .comment {
+            color: #6a9955;
+        }
+
+        .code-example .template {
+            color: #ce9178;
+        }
+
+        .code-example .helper {
+            color: #569cd6;
+        }
+
+        /* Explanation sections */
+        .explanation {
+            background: #e9ecef;
+            padding: 1rem;
+            border-left: 4px solid #0066cc;
+            margin: 1rem 0;
+        }
+
+        .key-concept {
+            font-weight: bold;
+            color: #0066cc;
+        }
+
+        /* Common pitfalls */
+        .pitfalls {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        /* Tips */
+        .tip {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        /* Student-friendly feature styles */
+        .real-world-example {
+            background: #fff3e0;
+            border: 2px dashed #ff9800;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .concept-visualization {
+            background: #fff;
+            border: 2px solid #0066cc;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .flow-diagram {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .flow-step {
+            background: #e3f2fd;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            position: relative;
+            flex: 1;
+            margin: 0 0.5rem;
+        }
+
+        .flow-arrow {
+            color: #0066cc;
+            font-size: 24px;
+        }
+
+        /* Progress tracker */
+        .progress-tracker {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-width: 200px;
+        }
+
+        .progress-item {
+            display: flex;
+            align-items: center;
+            margin: 0.5rem 0;
+        }
+
+        .progress-status {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+
+        .completed { background: #4caf50; }
+        .in-progress { background: #ff9800; }
+        .not-started { background: #e0e0e0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="navigation">
+            <a href="/" class="nav-link">Back to Forms</a>
+            <a href="/server-tutorial.html" class="nav-link">Server Tutorial</a>
+            <a href="/package-tutorial.html" class="nav-link">Package.json Tutorial</a>
+        </nav>
+
+        <h1>Understanding Handlebars (HBS)</h1>
+        <p class="intro">Think of Handlebars like a smart text replacement tool - it's like having a super-powered "find and replace" feature that helps you build dynamic web pages! Let's learn how to create amazing interactive websites! 🚀</p>
+
+        <section class="form-section">
+            <h2><span class="section-number">1</span>What is Handlebars?</h2>
+
+            <div class="real-world-example">
+                <h4>Real-World Example: Making a Birthday Card 🎂</h4>
+                <p>Imagine you're making birthday cards for your classmates:</p>
+                <ul>
+                    <li><strong>Template</strong> = The basic card design you'll reuse</li>
+                    <li><strong>Variables</strong> = Spaces for name, age, and message</li>
+                    <li><strong>Helpers</strong> = Special decorations you can add</li>
+                    <li><strong>Output</strong> = The finished, personalized card</li>
+                </ul>
+            </div>
+
+            <div class="concept-visualization">
+                <h3>How Handlebars Works</h3>
+                <div class="flow-diagram">
+                    <div class="flow-step">Template</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">Data</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">Result</div>
+                </div>
+            </div>
+
+            <div class="code-example">
+                <pre>
+<span class="comment">// Example Handlebars template</span>
+<span class="template">&lt;div class="greeting-card"&gt;
+    &lt;h2&gt;Happy Birthday, {{name}}! 🎉&lt;/h2&gt;
+    &lt;p&gt;You are {{age}} years old today!&lt;/p&gt;
+    {{#if hasParty}}
+        &lt;p&gt;See you at the party! 🎈&lt;/p&gt;
+    {{/if}}
+&lt;/div&gt;</span></pre>
+            </div>
+        </section>
+
+        <section class="form-section">
+            <h2><span class="section-number">2</span>Basic Syntax</h2>
+            <div class="code-example">
+                <pre>
+<span class="comment">{{! Basic variable output }}</span>
+<span class="template">&lt;h1&gt;Hello, {{name}}!&lt;/h1&gt;</span>
+
+<span class="comment">{{! Conditional rendering }}</span>
+<span class="template">{{#if user}}
+    Welcome back, {{user.name}}!
+{{else}}
+    Please log in.
+{{/if}}</span>
+
+<span class="comment">{{! Array iteration }}</span>
+<span class="template">{{#each items}}
+    &lt;li&gt;{{this}}&lt;/li&gt;
+{{/each}}</span></pre>
+            </div>
+            <div class="explanation">
+                <h3>Key Concepts:</h3>
+                <ul>
+                    <li><span class="key-concept">{{variable}}</span>: Output escaped content</li>
+                    <li><span class="key-concept">{{{triple-stache}}}</span>: Output unescaped HTML</li>
+                    <li><span class="key-concept">{{#if}}</span>: Conditional blocks</li>
+                    <li><span class="key-concept">{{#each}}</span>: Array iteration</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="form-section">
+            <h2><span class="section-number">3</span>Express.js Integration</h2>
+            <div class="code-example">
+                <pre>
+<span class="comment">// Setup Handlebars in Express</span>
+const express = require('express');
+const hbs = require('hbs');
+const app = express();
+
+<span class="comment">// Configure view engine</span>
+app.set('view engine', 'hbs');
+app.set('views', './views');
+
+<span class="comment">// Register partials directory</span>
+hbs.registerPartials('./views/partials');</pre>
+            </div>
+            <div class="explanation">
+                <h3>Project Structure:</h3>
+                <pre>
+views/
+  ├── layouts/
+  │   └── main.hbs
+  ├── partials/
+  │   ├── header.hbs
+  │   └── footer.hbs
+  └── profile.hbs</pre>
+            </div>
+        </section>
+
+        <section class="form-section">
+            <h2><span class="section-number">4</span>Custom Helpers</h2>
+            <div class="code-example">
+                <pre>
+<span class="comment">// Register custom helpers</span>
+hbs.registerHelper('formatDate', function(date) {
+    return new Date(date).toLocaleDateString();
+});
+
+hbs.registerHelper('uppercase', function(str) {
+    return str.toUpperCase();
+});
+
+<span class="comment">// Use in templates</span>
+&lt;p&gt;Posted on: {{formatDate post.date}}&lt;/p&gt;
+&lt;h1&gt;{{uppercase title}}&lt;/h1&gt;</pre>
+            </div>
+        </section>
+
+        <section class="form-section">
+            <h2><span class="section-number">5</span>Best Practices</h2>
+            <div class="tip">
+                <h4>Tips for Success:</h4>
+                <ul>
+                    <li>✅ Keep templates simple and focused</li>
+                    <li>✅ Use partials for reusable parts</li>
+                    <li>✅ Always escape user input</li>
+                    <li>✅ Comment your templates</li>
+                </ul>
+            </div>
+            <div class="pitfalls">
+                <h4>Common Mistakes to Avoid:</h4>
+                <ul>
+                    <li>❌ Forgetting to close block helpers</li>
+                    <li>❌ Using {{{this}}} with user input</li>
+                    <li>❌ Nesting helpers incorrectly</li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="next-steps">
+            <h3>What's Next?</h3>
+            <ul>
+                <li>Explore Express.js server setup in the <a href="/server-tutorial.html">Server.js Tutorial</a></li>
+                <li>Learn about project dependencies in the <a href="/package-tutorial.html">Package.json Tutorial</a></li>
+                <li>Practice creating your own templates!</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation Techniques - Interactive Tutorial</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Code preview styles */
+        .code-preview {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .code-section {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1.5rem;
+            border-radius: 8px;
+            font-family: 'Monaco', 'Consolas', monospace;
+            overflow-x: auto;
+        }
+
+        .preview-section {
+            background: #ffffff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+        }
+
+        .validation-example {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+        }
+
+        .validation-note {
+            background: #e8f5e9;
+            padding: 1rem;
+            border-left: 4px solid #4caf50;
+            margin: 1rem 0;
+        }
+
+        .error-message {
+            color: #d32f2f;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        input.invalid {
+            border-color: #d32f2f;
+        }
+
+        input.valid {
+            border-color: #4caf50;
+        }
+
+        .copy-button {
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+
+        .copy-button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="navigation">
+            <a href="/" class="nav-link">Back to Forms</a>
+            <a href="/server-tutorial.html" class="nav-link">Server Tutorial</a>
+            <a href="/handlebars-tutorial.html" class="nav-link">Handlebars Tutorial</a>
+        </nav>
+
+        <h1>Form Validation Techniques</h1>
+        <p class="intro">Learn how to validate forms like a pro! 🚀 This interactive guide shows you how to ensure your forms collect clean, correct data.</p>
+
+        <section class="form-section">
+            <h2><span class="section-number">1</span>Basic Required Field Validation</h2>
+            
+            <div class="validation-example">
+                <div class="code-preview">
+                    <div class="code-section">
+                        <pre><code class="language-html">&lt;form id="basicForm" novalidate&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label for="username"&gt;Username:&lt;/label&gt;
+        &lt;input 
+            type="text" 
+            id="username" 
+            required 
+            minlength="3"
+        &gt;
+        &lt;div class="error-message" id="usernameError"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+document.getElementById('basicForm')
+    .addEventListener('submit', (e) => {
+        e.preventDefault();
+        const username = document.getElementById('username');
+        
+        if (!username.value) {
+            showError(username, 'Username is required');
+        } else if (username.value.length < 3) {
+            showError(username, 'Username must be at least 3 characters');
+        } else {
+            username.classList.add('valid');
+            username.classList.remove('invalid');
+        }
+    });
+&lt;/script&gt;</code></pre>
+                        <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+                    </div>
+                    <div class="preview-section">
+                        <form id="basicForm" novalidate>
+                            <div class="form-group">
+                                <label for="username">Username:</label>
+                                <input type="text" id="username" required minlength="3">
+                                <div class="error-message" id="usernameError"></div>
+                            </div>
+                            <button type="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="validation-note">
+                    <strong>Key Points:</strong>
+                    <ul>
+                        <li>Use <code>novalidate</code> to prevent browser validation</li>
+                        <li>Add <code>required</code> attribute for semantic HTML</li>
+                        <li>Validate on form submission</li>
+                        <li>Show clear error messages</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="form-section">
+            <h2><span class="section-number">2</span>Pattern Validation</h2>
+            
+            <div class="validation-example">
+                <div class="code-preview">
+                    <div class="code-section">
+                        <pre><code class="language-html">&lt;form id="patternForm" novalidate&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label for="email"&gt;Email:&lt;/label&gt;
+        &lt;input 
+            type="email" 
+            id="email" 
+            pattern="[^@]+@[^@]+\.[^@]+"
+        &gt;
+        &lt;div class="error-message" id="emailError"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+document.getElementById('patternForm')
+    .addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('email');
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        
+        if (!email.value) {
+            showError(email, 'Email is required');
+        } else if (!emailPattern.test(email.value)) {
+            showError(email, 'Please enter a valid email');
+        } else {
+            email.classList.add('valid');
+            email.classList.remove('invalid');
+        }
+    });
+&lt;/script&gt;</code></pre>
+                        <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+                    </div>
+                    <div class="preview-section">
+                        <form id="patternForm" novalidate>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" pattern="[^@]+@[^@]+\.[^@]+">
+                                <div class="error-message" id="emailError"></div>
+                            </div>
+                            <button type="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="validation-note">
+                    <strong>Key Points:</strong>
+                    <ul>
+                        <li>Use regex patterns for complex validation</li>
+                        <li>HTML5 <code>pattern</code> attribute provides fallback</li>
+                        <li>Test input against pattern on submit</li>
+                        <li>Show specific error messages for pattern mismatches</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="form-section">
+            <h2><span class="section-number">3</span>Real-time Validation</h2>
+            
+            <div class="validation-example">
+                <div class="code-preview">
+                    <div class="code-section">
+                        <pre><code class="language-html">&lt;form id="realtimeForm" novalidate&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label for="password"&gt;Password:&lt;/label&gt;
+        &lt;input 
+            type="password" 
+            id="password"
+            minlength="8"
+        &gt;
+        &lt;div class="error-message" id="passwordError"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+const password = document.getElementById('password');
+
+password.addEventListener('input', (e) => {
+    const value = e.target.value;
+    
+    if (value.length < 8) {
+        showError(password, 'Password must be at least 8 characters');
+    } else if (!/[A-Z]/.test(value)) {
+        showError(password, 'Include at least one uppercase letter');
+    } else if (!/[0-9]/.test(value)) {
+        showError(password, 'Include at least one number');
+    } else {
+        password.classList.add('valid');
+        password.classList.remove('invalid');
+        document.getElementById('passwordError').style.display = 'none';
+    }
+});
+&lt;/script&gt;</code></pre>
+                        <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+                    </div>
+                    <div class="preview-section">
+                        <form id="realtimeForm" novalidate>
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <input type="password" id="password" minlength="8">
+                                <div class="error-message" id="passwordError"></div>
+                            </div>
+                            <button type="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="validation-note">
+                    <strong>Key Points:</strong>
+                    <ul>
+                        <li>Validate as user types with <code>input</code> event</li>
+                        <li>Provide immediate feedback</li>
+                        <li>Show progressive requirements</li>
+                        <li>Use clear success/error states</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            function showError(field, message) {
+                const errorDiv = document.getElementById(`${field.id}Error`);
+                if (errorDiv) {
+                    errorDiv.textContent = message;
+                    errorDiv.style.display = 'block';
+                    field.classList.add('invalid');
+                    field.classList.remove('valid');
+                }
+            }
+
+            function copyCode(button) {
+                const codeBlock = button.previousElementSibling.querySelector('code');
+                navigator.clipboard.writeText(codeBlock.textContent)
+                    .then(() => {
+                        button.textContent = 'Copied!';
+                        setTimeout(() => {
+                            button.textContent = 'Copy Code';
+                        }, 2000);
+                    });
+            }
+
+            // Initialize all forms from the examples
+            document.addEventListener('DOMContentLoaded', () => {
+                // Basic form validation
+                document.getElementById('basicForm')?.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const username = document.getElementById('username');
+                    
+                    if (!username.value) {
+                        showError(username, 'Username is required');
+                    } else if (username.value.length < 3) {
+                        showError(username, 'Username must be at least 3 characters');
+                    } else {
+                        username.classList.add('valid');
+                        username.classList.remove('invalid');
+                        document.getElementById('usernameError').style.display = 'none';
+                    }
+                });
+
+                // Pattern form validation
+                document.getElementById('patternForm')?.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const email = document.getElementById('email');
+                    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    
+                    if (!email.value) {
+                        showError(email, 'Email is required');
+                    } else if (!emailPattern.test(email.value)) {
+                        showError(email, 'Please enter a valid email');
+                    } else {
+                        email.classList.add('valid');
+                        email.classList.remove('invalid');
+                        document.getElementById('emailError').style.display = 'none';
+                    }
+                });
+
+                // Realtime password validation
+                const password = document.getElementById('password');
+                if (password) {
+                    password.addEventListener('input', (e) => {
+                        const value = e.target.value;
+                        
+                        if (value.length < 8) {
+                            showError(password, 'Password must be at least 8 characters');
+                        } else if (!/[A-Z]/.test(value)) {
+                            showError(password, 'Include at least one uppercase letter');
+                        } else if (!/[0-9]/.test(value)) {
+                            showError(password, 'Include at least one number');
+                        } else {
+                            password.classList.add('valid');
+                            password.classList.remove('invalid');
+                            document.getElementById('passwordError').style.display = 'none';
+                        }
+                    });
+                }
+            });
+        </script>
+    </div>
+</body>
+</html>

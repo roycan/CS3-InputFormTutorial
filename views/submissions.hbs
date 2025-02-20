@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Submission Tutorial</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="navigation">
+            <a href="/" class="nav-link">Form Examples</a>
+            <a href="/submissions" class="nav-link">View Submissions</a>
+        </nav>
+        <div class="container">
+            <h1>Form Submissions</h1>
+
+            <div class="submissions-container">
+                {{#if submissions.length}}
+                    {{#each submissions}}
+                        <div class="submission-card">
+                            <h3>{{formType}} Form Submission</h3>
+                            <div class="submission-details">
+                                {{#each this}}
+                                    {{#unless (eq @key "formType")}}
+                                    <div class="detail-row">
+                                        <strong>{{@key}}:</strong>
+                                        {{#if (isArray this)}}
+                                            {{join this ", "}}
+                                        {{else}}
+                                            {{this}}
+                                        {{/if}}
+                                    </div>
+                                    {{/unless}}
+                                {{/each}}
+                            </div>
+                        </div>
+                    {{/each}}
+                {{else}}
+                    <div class="no-submissions">
+                        <p>No submissions yet.</p>
+                        <p>Go back to the forms page and submit a form to see it here!</p>
+                    </div>
+                {{/if}}
+            </div>
+
+            <div class="button-group">
+                <a href="/" class="nav-link">Back to Forms</a>
+            </div>
+        </div>
+    </div>
+    <script src="/script.js"></script>
+</body>
+</html>

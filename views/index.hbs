@@ -1,0 +1,152 @@
+<div class="container">
+    <h1>Web Forms Tutorial</h1>
+
+    <!-- Personal Information Form -->
+    <div class="form-section">
+        <h2>Personal Information</h2>
+        <form id="personalForm" action="/submit/personal" method="POST">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required minlength="2">
+                <div class="validation-hint">Minimum 2 characters required</div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <div class="validation-hint">Must be a valid email address</div>
+            </div>
+
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" min="13" max="120">
+                <div class="validation-hint">Must be between 13 and 120</div>
+            </div>
+
+            <button type="submit">Submit Personal Info</button>
+        </form>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="form-section">
+        <h2>Contact Information</h2>
+        <form id="contactForm" action="/submit/contact" method="POST">
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+                <div class="validation-hint">Format: 123-456-7890</div>
+            </div>
+
+            <div class="form-group">
+                <label for="preferredTime">Preferred Contact Time:</label>
+                <input type="time" id="preferredTime" name="preferredTime">
+            </div>
+
+            <div class="form-group">
+                <label for="contactMethod">Preferred Contact Method:</label>
+                <select id="contactMethod" name="contactMethod">
+                    <option value="">Select a method</option>
+                    <option value="email">Email</option>
+                    <option value="phone">Phone</option>
+                    <option value="both">Both</option>
+                </select>
+            </div>
+
+            <button type="submit">Submit Contact Info</button>
+        </form>
+    </div>
+
+    <!-- Profile Form -->
+    <div class="form-section">
+        <h2>Profile Customization</h2>
+        <form id="profileForm" action="/submit/profile" method="POST">
+            <div class="form-group">
+                <label for="favoriteColor">Favorite Color:</label>
+                <input type="color" id="favoriteColor" name="favoriteColor">
+            </div>
+
+            <div class="form-group">
+                <label for="avatar">Profile Picture:</label>
+                <input type="file" id="avatar" name="avatar" accept="image/*">
+                <div class="validation-hint">Maximum file size: 5MB, Images only</div>
+            </div>
+
+            <button type="submit">Submit Profile</button>
+        </form>
+    </div>
+
+    <!-- Interests Form -->
+    <div class="form-section">
+        <h2>Interests & Experience</h2>
+        <form id="interestsForm" action="/submit/interests" method="POST">
+            <div class="form-group">
+                <label>Gender:</label>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="gender" value="male">
+                        Male
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="gender" value="female">
+                        Female
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="gender" value="other">
+                        Other
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Interests:</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="interests" value="coding">
+                        Coding
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="interests" value="design">
+                        Design
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="interests" value="music">
+                        Music
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="interests" value="sports">
+                        Sports
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="experience">Experience Level:</label>
+                <input type="range" id="experience" name="experience" min="0" max="10" value="5">
+                <span id="experienceValue">5 years</span>
+            </div>
+
+            <button type="submit">Submit Interests</button>
+        </form>
+    </div>
+
+    <!-- Terms Form -->
+    <div class="form-section">
+        <h2>Terms & Newsletter</h2>
+        <form id="termsForm" action="/submit/terms" method="POST">
+            <div class="form-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    I agree to the terms and conditions
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="newsletter" name="newsletter">
+                    Subscribe to newsletter
+                </label>
+            </div>
+
+            <button type="submit">Submit Terms</button>
+        </form>
+    </div>
+</div>

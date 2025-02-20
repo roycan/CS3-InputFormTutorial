@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding package.json - NPM Tutorial</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Base styles */
+        .code-example {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-family: 'Monaco', 'Consolas', monospace;
+            position: relative;
+            overflow-x: auto;
+        }
+
+        .code-example pre {
+            margin: 0;
+        }
+
+        .code-example .comment {
+            color: #6a9955;
+        }
+
+        .code-example .key {
+            color: #9cdcfe;
+        }
+
+        .code-example .string {
+            color: #ce9178;
+        }
+
+        .code-example .number {
+            color: #b5cea8;
+        }
+
+        /* Interactive elements */
+        .try-yourself {
+            background: #f0f7ff;
+            border: 2px solid #0066cc;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .try-yourself h4 {
+            color: #0066cc;
+            margin-bottom: 1rem;
+        }
+
+        .live-preview {
+            background: white;
+            padding: 1rem;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            margin-top: 1rem;
+        }
+
+        /* Explanation sections */
+        .explanation {
+            background: #e9ecef;
+            padding: 1rem;
+            border-left: 4px solid #0066cc;
+            margin: 1rem 0;
+        }
+
+        .key-concept {
+            font-weight: bold;
+            color: #0066cc;
+        }
+
+        /* Warnings and tips */
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .tip {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        /* Version calculator */
+        .version-calculator {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .version-input {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .version-input input {
+            width: 60px;
+            padding: 0.5rem;
+            text-align: center;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+        }
+
+        .version-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        .version-buttons button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            background: #0066cc;
+            color: white;
+            cursor: pointer;
+        }
+
+        .version-buttons button:hover {
+            background: #0056b3;
+        }
+
+        /* New styles for student-friendly features */
+        .concept-visualization {
+            background: #fff;
+            border: 2px solid #0066cc;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .concept-card {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem;
+            text-align: left;
+            transition: transform 0.2s;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .emoji-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .challenge-section {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .real-world-example {
+            background: #fff3e0;
+            border: 2px dashed #ff9800;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        /* Progress tracker styles from server tutorial */
+        .progress-tracker {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="navigation">
+            <a href="/" class="nav-link">Back to Forms</a>
+            <a href="/server-tutorial.html" class="nav-link">Server.js Tutorial</a>
+            <a href="/handlebars-tutorial.html" class="nav-link">Handlebars Tutorial</a>
+        </nav>
+
+        <!-- Progress Tracker -->
+        <div class="progress-tracker">
+            <h4>Your Progress</h4>
+            <div class="progress-item">
+                <div class="progress-status completed"></div>
+                <span>Package Basics</span>
+            </div>
+            <div class="progress-item">
+                <div class="progress-status in-progress"></div>
+                <span>Dependencies</span>
+            </div>
+            <div class="progress-item">
+                <div class="progress-status not-started"></div>
+                <span>Scripts</span>
+            </div>
+        </div>
+
+        <h1>Understanding package.json</h1>
+        <p class="intro">Think of package.json as your project's recipe book 📖 - it lists all the ingredients (dependencies) and cooking instructions (scripts) needed to make your web app delicious! Let's learn how to be a master chef of Node.js projects! 👨‍🍳</p>
+
+        <section class="form-section">
+            <h2><span class="section-number">1</span>What is package.json?</h2>
+
+            <div class="real-world-example">
+                <h4>Real-World Example: Building a LEGO Set 🧱</h4>
+                <p>Think of package.json like the instruction manual that comes with a LEGO set:</p>
+                <ul>
+                    <li><strong>Set Name & Number</strong> = project name & version</li>
+                    <li><strong>Required Pieces</strong> = dependencies</li>
+                    <li><strong>Building Steps</strong> = scripts</li>
+                    <li><strong>Age Rating</strong> = engine requirements</li>
+                </ul>
+            </div>
+
+            <div class="concept-visualization">
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+                    <div class="concept-card">
+                        <div class="emoji-icon">📦</div>
+                        <h4>Project Info</h4>
+                        <p>Name, version, description</p>
+                    </div>
+                    <div class="concept-card">
+                        <div class="emoji-icon">🧩</div>
+                        <h4>Dependencies</h4>
+                        <p>Required packages</p>
+                    </div>
+                    <div class="concept-card">
+                        <div class="emoji-icon">📜</div>
+                        <h4>Scripts</h4>
+                        <p>Run commands</p>
+                    </div>
+                    <div class="concept-card">
+                        <div class="emoji-icon">⚙️</div>
+                        <h4>Configuration</h4>
+                        <p>Project settings</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-example">
+                <pre>
+<span class="comment">// Your first package.json</span>
+{
+  <span class="key">"name"</span>: <span class="string">"my-awesome-project"</span>,
+  <span class="key">"version"</span>: <span class="string">"1.0.0"</span>,
+  <span class="key">"description"</span>: <span class="string">"My first Node.js project!"</span>,
+  <span class="key">"author"</span>: <span class="string">"Your Name"</span>,
+  <span class="key">"license"</span>: <span class="string">"MIT"</span>
+}</pre>
+            </div>
+
+            <div class="challenge-section">
+                <h4>🌟 Mini Challenge #1: Create Your package.json</h4>
+                <p>Create a package.json for your dream project:</p>
+                <div class="try-yourself">
+                    <h4>Your Code Here:</h4>
+                    <textarea id="challenge1-code" rows="10" placeholder="Write your package.json here...">
+{
+  "name": "",
+  "version": "",
+  "description": "",
+  "author": "",
+  "license": ""
+}</textarea>
+                    <button onclick="checkChallenge1()">Check My Code</button>
+                    <div id="challenge1-feedback"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="form-section">
+            <h2><span class="section-number">2</span>Dependencies Management</h2>
+            <div class="code-example">
+                <pre><span class="comment">// Different types of dependencies</span>
+{
+  <span class="key">"dependencies"</span>: {
+    <span class="key">"express"</span>: <span class="string">"^4.17.1"</span>,
+    <span class="key">"react"</span>: <span class="string">"~18.2.0"</span>
+  },
+  <span class="key">"devDependencies"</span>: {
+    <span class="key">"nodemon"</span>: <span class="string">"^2.0.15"</span>,
+    <span class="key">"jest"</span>: <span class="string">"^29.0.0"</span>
+  }
+}</pre>
+            </div>
+            <div class="explanation">
+                <h3>Dependency Types:</h3>
+                <ul>
+                    <li><span class="key-concept">dependencies</span>: Required in production</li>
+                    <li><span class="key-concept">devDependencies</span>: Development tools only</li>
+                    <li><span class="key-concept">peerDependencies</span>: Required peer packages</li>
+                </ul>
+            </div>
+            <div class="tip">
+                <h4>Version Specifiers:</h4>
+                <ul>
+                    <li><code>^4.17.1</code> - Updates to 4.x.x (minor and patch)</li>
+                    <li><code>~4.17.1</code> - Updates to 4.17.x (patch only)</li>
+                    <li><code>4.17.1</code> - Exact version</li>
+                    <li><code>*</code> - Latest version (not recommended)</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="form-section">
+            <h2><span class="section-number">3</span>Scripts and Commands</h2>
+            <div class="code-example">
+                <pre><span class="comment">// Automation scripts</span>
+{
+  <span class="key">"scripts"</span>: {
+    <span class="key">"start"</span>: <span class="string">"node server.js"</span>,
+    <span class="key">"dev"</span>: <span class="string">"nodemon server.js"</span>,
+    <span class="key">"test"</span>: <span class="string">"jest"</span>,
+    <span class="key">"build"</span>: <span class="string">"webpack"</span>
+  }
+}</pre>
+            </div>
+            <div class="try-yourself">
+                <h4>Common NPM Commands</h4>
+                <div class="live-preview">
+                    <code>npm install</code>
+                    <p>Install all dependencies</p>
+
+                    <code>npm install package-name --save</code>
+                    <p>Install and add to dependencies</p>
+
+                    <code>npm install package-name --save-dev</code>
+                    <p>Install and add to devDependencies</p>
+
+                    <code>npm run script-name</code>
+                    <p>Execute a defined script</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="form-section">
+            <h2><span class="section-number">4</span>Best Practices</h2>
+            <div class="warning">
+                <h4>Common Mistakes to Avoid:</h4>
+                <ul>
+                    <li>❌ Committing node_modules directory</li>
+                    <li>❌ Using * as version number</li>
+                    <li>❌ Ignoring package-lock.json</li>
+                    <li>❌ Manual package.json editing</li>
+                </ul>
+            </div>
+            <div class="tip">
+                <h4>Recommended Practices:</h4>
+                <ul>
+                    <li>✅ Use semantic versioning</li>
+                    <li>✅ Include .gitignore file</li>
+                    <li>✅ Lock dependencies with package-lock.json</li>
+                    <li>✅ Document scripts clearly</li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="next-steps">
+            <h3>What's Next?</h3>
+            <ul>
+                <li>Learn about Express.js setup in the <a href="/server-tutorial.html">Server.js Tutorial</a></li>
+                <li>Explore templating with <a href="/handlebars-tutorial.html">Handlebars Tutorial</a></li>
+                <li>Practice creating and managing your own package.json</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function updateVersion(type) {
+            const major = parseInt(document.getElementById('major').value);
+            const minor = parseInt(document.getElementById('minor').value);
+            const patch = parseInt(document.getElementById('patch').value);
+
+            switch(type) {
+                case 'major':
+                    document.getElementById('major').value = major + 1;
+                    document.getElementById('minor').value = 0;
+                    document.getElementById('patch').value = 0;
+                    document.getElementById('version-explanation').textContent = 
+                        'Major version bump (Breaking Changes): ' +
+                        `${major}.${minor}.${patch} → ${major + 1}.0.0`;
+                    break;
+                case 'minor':
+                    document.getElementById('minor').value = minor + 1;
+                    document.getElementById('patch').value = 0;
+                    document.getElementById('version-explanation').textContent = 
+                        'Minor version bump (New Features): ' +
+                        `${major}.${minor}.${patch} → ${major}.${minor + 1}.0`;
+                    break;
+                case 'patch':
+                    document.getElementById('patch').value = patch + 1;
+                    document.getElementById('version-explanation').textContent = 
+                        'Patch version bump (Bug Fixes): ' +
+                        `${major}.${minor}.${patch} → ${major}.${minor}.${patch + 1}`;
+                    break;
+            }
+        }
+        function checkChallenge1() {
+            try {
+                const code = document.getElementById('challenge1-code').value;
+                const pkg = JSON.parse(code);
+                const feedback = document.getElementById('challenge1-feedback');
+
+                const required = ['name', 'version', 'description', 'author', 'license'];
+                const missing = required.filter(field => !pkg[field]);
+
+                if (missing.length === 0) {
+                    feedback.innerHTML = '🎉 Excellent! Your package.json looks perfect!';
+                    feedback.style.color = '#4caf50';
+                } else {
+                    feedback.innerHTML = `😅 Almost there! Don't forget to fill in: ${missing.join(', ')}`;
+                    feedback.style.color = '#ff9800';
+                }
+            } catch (e) {
+                document.getElementById('challenge1-feedback').innerHTML = 
+                    '🤔 Oops! That doesn\'t look like valid JSON. Check your syntax!';
+            }
+        }
+
+        // Progress tracking
+        function updateProgress(section) {
+            const items = document.querySelectorAll('.progress-item');
+            items.forEach((item, index) => {
+                if (index < section) {
+                    item.querySelector('.progress-status').className = 'progress-status completed';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "input_form_tutorial",
+  "version": "1.0.0",
+  "description": "## Project Description This project is a static educational website designed to demonstrate form handling and client-side validation techniques using HTML, CSS, and JavaScript. It serves as a comprehensive learning tool for high school students studying web development, showcasing various form input types, validation techniques, and data handling methods.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Roy Canseco",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "express": "^4.21.2",
+    "express-handlebars": "^8.0.1",
+    "express-session": "^1.18.1",
+    "hbs": "^4.2.0",
+    "nodemon": "^3.1.9"
+  }
+}

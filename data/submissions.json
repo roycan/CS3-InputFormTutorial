@@ -1,0 +1,23 @@
+{
+  "personal": [
+    {
+      "formType": "personal",
+      "name": "Roy",
+      "email": "roy.canseco@gmail.com",
+      "age": "44",
+      "submissionDate": "2025-01-29T01:26:22.383Z"
+    }
+  ],
+  "contact": [
+    {
+      "formType": "contact",
+      "phone": "092-603-4301",
+      "preferredTime": "09:26",
+      "contactMethod": "email",
+      "submissionDate": "2025-01-29T01:26:42.156Z"
+    }
+  ],
+  "profile": [],
+  "interests": [],
+  "terms": []
+}

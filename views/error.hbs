@@ -1,0 +1,20 @@
+{{!-- Error page template that shows friendly error messages to users --}}
+{{!-- The container div keeps content centered and properly spaced --}}
+<div class="container">
+    {{!-- Error section with distinct styling --}}
+    <div class="form-section error-section">
+        {{!-- Error heading --}}
+        <h2>Error</h2>
+
+        {{!-- Display the error message passed from the server --}}
+        {{!-- The {{message}} syntax is a Handlebars variable that gets replaced with actual error text --}}
+        <div class="error-message">
+            {{message}}
+        </div>
+
+        {{!-- Navigation button to return to the main page --}}
+        <div class="button-group">
+            <a href="/" class="button">Back to Forms</a>
+        </div>
+    </div>
+</div>

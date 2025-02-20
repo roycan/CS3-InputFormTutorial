@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basic meta tags for proper browser rendering -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Page title that appears in browser tab -->
+    <title>Form Submission Tutorial</title>
+
+    <!-- Link to our stylesheet for page styling -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Main container to hold all content -->
+    <div class="container">
+        <!-- Navigation menu for moving between pages -->
+        <nav class="navigation">
+            <a href="/" class="nav-link">Form Examples</a>
+            <a href="/submissions" class="nav-link">View Submissions</a>
+            <a href="/validation-tutorial.html" class="nav-link">Validation Tutorial</a>
+            <a href="/handlebars-tutorial.html" class="nav-link">Handlebars Tutorial</a>
+        </nav>
+
+        <!-- Special Handlebars syntax {{{body}}} -->
+        <!-- This is where the content from other templates will be inserted -->
+        {{{body}}}
+    </div>
+
+    <!-- Include our JavaScript file for interactive features -->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="author" content="Roy Canseco" />
+        <title>Web Forms Tutorial</title>
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="icon" href="generated-icon.png" type="image/png" />
+    </head>
+    <body>
+        <div class="container">
+            <h1>Web Forms Tutorial</h1>
+            <div class="navigation">
+                <a href="/" class="nav-link">Form Examples</a>
+                <a href="/submissions" class="nav-link">View Submissions</a>
+                <a href="/server-tutorial.html" class="nav-link"
+                    >Server.js Guide</a
+                >
+                <a href="/package-tutorial.html" class="nav-link"
+                    >Package.json Guide</a
+                >
+                <a href="/handlebars-tutorial.html" class="nav-link"
+                    >Handlebars Guide</a
+                >
+                <a href="/validation-tutorial.html" class="nav-link"
+                    >Handlebars Guide</a
+                >
+            </div>
+
+            <!-- Personal Information Form -->
+            <div class="form-section">
+                <h2>Personal Information</h2>
+                <p class="section-desc">
+                    Basic personal details with text and email validation.
+                </p>
+                <form id="personalForm" action="/submit/personal" method="POST">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <div class="tooltip-trigger">
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                required
+                                minlength="2"
+                            />
+                            <span class="info-icon">ⓘ</span>
+                            <div class="tooltip">
+                                Your full name must be at least 2 characters
+                                long.
+                                <div class="example">Example: John Doe</div>
+                            </div>
+                        </div>
+                        <div class="validation-hint">
+                            Minimum 2 characters required
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <div class="tooltip-trigger">
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                required
+                            />
+                            <span class="info-icon">ⓘ</span>
+                            <div class="tooltip">
+                                Enter a valid email address with @ symbol and
+                                domain.
+                                <div class="example">
+                                    Example: john.doe@example.com
+                                </div>
+                            </div>
+                        </div>
+                        <div class="validation-hint">
+                            Must be a valid email address
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="age">Age:</label>
+                        <div class="tooltip-trigger">
+                            <input
+                                type="number"
+                                id="age"
+                                name="age"
+                                min="13"
+                                max="120"
+                            />
+                            <span class="info-icon">ⓘ</span>
+                            <div class="tooltip">
+                                Age must be between 13 and 120 years.
+                                <div class="example">Example: 25</div>
+                            </div>
+                        </div>
+                        <div class="validation-hint">
+                            Must be between 13 and 120
+                        </div>
+                    </div>
+
+                    <button type="submit">Submit Personal Info</button>
+                </form>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="form-section">
+                <h2>Contact Information</h2>
+                <p class="section-desc">
+                    Contact preferences with formatted phone input.
+                </p>
+                <form id="contactForm" action="/submit/contact" method="POST">
+                    <div class="form-group">
+                        <label for="phone">Phone Number:</label>
+                        <div class="tooltip-trigger">
+                            <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                            />
+                            <span class="info-icon">ⓘ</span>
+                            <div class="tooltip">
+                                Enter your phone number in the format:
+                                XXX-XXX-XXXX
+                                <div class="example">Example: 123-456-7890</div>
+                            </div>
+                        </div>
+                        <div class="validation-hint">Format: 123-456-7890</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="preferredTime"
+                            >Preferred Contact Time:</label
+                        >
+                        <div class="tooltip-trigger">
+                            <input
+                                type="time"
+                                id="preferredTime"
+                                name="preferredTime"
+                            />
+                            <span class="info-icon">ⓘ</span>
+                            <div class="tooltip">
+                                Select your preferred time for contact in
+                                24-hour format.
+                                <div class="example">
+                                    Example: 14:30 (2:30 PM)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactMethod"
+                            >Preferred Contact Method:</label
+                        >
+                        <div class="tooltip-trigger">
+                            <select id="contactMethod" name="contactMethod">
+                                <option value="">Select a method</option>
+                                <option value="email">Email</option>
+                                <option value="phone">Phone</option>
+                                <option value="both">Both</option>
+                            </select>
+                            <span class="info-icon">ⓘ</span>
+                            <div class="tooltip">
+                                Choose how you'd like to be contacted.
+                                <div class="example">
+                                    Select "Both" to be reached by email and
+                                    phone
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit">Submit Contact Info</button>
+                </form>
+            </div>
+
+            <!-- Profile Form -->
+            <div class="form-section">
+                <h2>Profile Customization</h2>
+                <p class="section-desc">
+                    Profile settings with color picker and file upload.
+                </p>
+                <form id="profileForm" action="/submit/profile" method="POST">
+                    <div class="form-group">
+                        <label for="favoriteColor">Favorite Color:</label>
+                        <div class="tooltip-trigger">
+                            <input
+                                type="color"
+                                id="favoriteColor"
+                                name="favoriteColor"
+                            />
+                            <span class="info-icon">ⓘ</span>
+                            <div class="tooltip">
+                                Pick your favorite color using the color picker.
+                                <div class="example">
+                                    Click to open the color selector
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="avatar">Profile Picture:</label>
+                        <div class="tooltip-trigger">
+                            <input
+                                type="file"
+                                id="avatar"
+                                name="avatar"
+                                accept="image/*"
+                            />
+                            <span class="info-icon">ⓘ</span>
+                            <div class="tooltip">
+                                Upload a profile picture (JPG, PNG, or GIF).
+                                <div class="example">Maximum size: 5MB</div>
+                            </div>
+                        </div>
+                        <div class="validation-hint">
+                            Maximum file size: 5MB, Images only
+                        </div>
+                    </div>
+
+                    <button type="submit">Submit Profile</button>
+                </form>
+            </div>
+
+            <!-- Interests Form -->
+            <div class="form-section">
+                <h2>Interests & Experience</h2>
+                <p class="section-desc">Your interests and experience level.</p>
+                <form
+                    id="interestsForm"
+                    action="/submit/interests"
+                    method="POST"
+                >
+                    <div class="form-group">
+                        <label>Gender:</label>
+                        <div class="tooltip-trigger">
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input
+                                        type="radio"
+                                        name="gender"
+                                        value="male"
+                                    />
+                                    Male
+                                </label>
+                                <label class="radio-label">
+                                    <input
+                                        type="radio"
+                                        name="gender"
+                                        value="female"
+                                    />
+                                    Female
+                                </label>
+                                <label class="radio-label">
+                                    <input
+                                        type="radio"
+                                        name="gender"
+                                        value="other"
+                                    />
+                                    Other
+                                </label>
+                            </div>
+                            <span class="info-icon">ⓘ</span>
+                            <div class="tooltip">
+                                Select your gender identity.
+                                <div class="example">
+                                    Choose the option that best represents you
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Interests:</label>
+                        <div class="tooltip-trigger">
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input
+                                        type="checkbox"
+                                        name="interests"
+                                        value="coding"
+                                    />
+                                    Coding
+                                </label>
+                                <label class="checkbox-label">
+                                    <input
+                                        type="checkbox"
+                                        name="interests"
+                                        value="design"
+                                    />
+                                    Design
+                                </label>
+                                <label class="checkbox-label">
+                                    <input
+                                        type="checkbox"
+                                        name="interests"
+                                        value="music"
+                                    />
+                                    Music
+                                </label>
+                                <label class="checkbox-label">
+                                    <input
+                                        type="checkbox"
+                                        name="interests"
+                                        value="sports"
+                                    />
+                                    Sports
+                                </label>
+                            </div>
+                            <span class="info-icon">ⓘ</span>
+                            <div class="tooltip">
+                                Select one or more areas of interest.
+                                <div class="example">
+                                    You can select multiple options
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="experience">Experience Level:</label>
+                        <div class="tooltip-trigger">
+                            <input
+                                type="range"
+                                id="experience"
+                                name="experience"
+                                min="0"
+                                max="10"
+                                value="5"
+                            />
+                            <span id="experienceValue">5 years</span>
+                            <span class="info-icon">ⓘ</span>
+                            <div class="tooltip">
+                                Slide to indicate your years of experience.
+                                <div class="example">
+                                    0 = Beginner, 10 = Expert
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit">Submit Interests</button>
+                </form>
+            </div>
+
+            <!-- Terms Form -->
+            <div class="form-section">
+                <h2>Terms & Newsletter</h2>
+                <p class="section-desc">
+                    Agreement to terms and newsletter subscription.
+                </p>
+                <form id="termsForm" action="/submit/terms" method="POST">
+                    <div class="form-group">
+                        <div class="tooltip-trigger">
+                            <label class="checkbox-label">
+                                <input
+                                    type="checkbox"
+                                    id="terms"
+                                    name="terms"
+                                    required
+                                />
+                                I agree to the terms and conditions
+                            </label>
+                            <span class="info-icon">ⓘ</span>
+                            <div class="tooltip">
+                                You must accept the terms to proceed.
+                                <div class="example">
+                                    Required for form submission
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="tooltip-trigger">
+                            <label class="checkbox-label">
+                                <input
+                                    type="checkbox"
+                                    id="newsletter"
+                                    name="newsletter"
+                                />
+                                Subscribe to newsletter
+                            </label>
+                            <span class="info-icon">ⓘ</span>
+                            <div class="tooltip">
+                                Optional: Receive updates and news.
+                                <div class="example">
+                                    You can unsubscribe at any time
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit">Submit Terms</button>
+                </form>
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>
