@@ -139,20 +139,21 @@
             <div class="playground-editors">
               <div class="editor-column">
                 <div class="editor-label">HTML</div>
-                <textarea class="code-editor editor-html"><form onsubmit="checkForm(event)">
+                <textarea class="code-editor editor-html"><form id="myForm">
   <input type="text" placeholder="Type here...">
   <button>Submit (Watch Console)</button>
 </form></textarea>
               </div>
               <div class="editor-column">
                 <div class="editor-label">JavaScript</div>
-                <textarea class="code-editor editor-js">function checkForm(event) {
-  // 1. Stop the page reload
+                <textarea class="code-editor editor-js">// 1. Find the form and attach event listener
+document.getElementById('myForm').addEventListener('submit', function(event) {
+  // 2. Stop the page reload
   event.preventDefault();
   
-  // 2. Log a message
+  // 3. Log a message
   console.log("Form submission stopped! We can now check data.");
-}</textarea>
+});</textarea>
               </div>
             </div>
             <div class="playground-preview-label">Preview</div>
@@ -183,7 +184,7 @@
             <div class="playground-editors" style="height: 400px;">
               <div class="editor-column">
                 <div class="editor-label">HTML</div>
-                <textarea class="code-editor editor-html"><form onsubmit="validateLogin(event)">
+                <textarea class="code-editor editor-html"><form id="loginForm">
   <label>Secret Password:</label>
   <input type="password" id="secret-pass">
   <button>Login</button>
@@ -192,7 +193,7 @@
               </div>
               <div class="editor-column">
                 <div class="editor-label">JavaScript</div>
-                <textarea class="code-editor editor-js">function validateLogin(event) {
+                <textarea class="code-editor editor-js">document.getElementById('loginForm').addEventListener('submit', function(event) {
   event.preventDefault(); // Stop reload
   
   // Get the value from the input box
@@ -207,7 +208,7 @@
     // Show error on screen
     document.getElementById("error-msg").innerText = "Wrong password! Try 'pizza'";
   }
-}</textarea>
+});</textarea>
               </div>
             </div>
             <div class="playground-preview-label">Preview</div>
@@ -237,7 +238,7 @@
             <div class="playground-editors" style="height: 400px;">
               <div class="editor-column">
                 <div class="editor-label">HTML</div>
-                <textarea class="code-editor editor-html"><form onsubmit="validateAge(event)">
+                <textarea class="code-editor editor-html"><form id="ageForm">
   <label>Enter your age:</label>
   <input type="number" id="user-age">
   <button>Enter Site</button>
@@ -245,7 +246,7 @@
               </div>
               <div class="editor-column">
                 <div class="editor-label">JavaScript</div>
-                <textarea class="code-editor editor-js">function validateAge(event) {
+                <textarea class="code-editor editor-js">document.getElementById('ageForm').addEventListener('submit', function(event) {
   event.preventDefault();
   
   // 1. Get the value (hint: document.getElementById)
@@ -255,7 +256,7 @@
   // Write your code below...
   
   console.log("User typed:", ageInput);
-}</textarea>
+});</textarea>
               </div>
             </div>
             <div class="playground-preview-label">Preview</div>

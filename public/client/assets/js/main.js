@@ -72,19 +72,17 @@ function setupPlaygrounds() {
           // But variables might conflict. We'll wrap in an IIFE.
           // Also we need to intercept console.log.
           
+          // Execute JS code in global scope so functions are accessible to HTML event handlers
           const code = `
-            (function() {
-              const console = this.mockConsole;
-              try {
-                ${jsEditor.value}
-              } catch(e) {
-                console.error(e.message);
-              }
-            }).call({mockConsole: mockConsole});
+            const console = mockConsole;
+            try {
+              ${jsEditor.value}
+            } catch(e) {
+              console.error(e.message);
+            }
           `;
 
-          // Execute
-          // We use a Function constructor to pass local variables
+          // Execute in global scope
           const run = new Function('mockConsole', code);
           run(mockConsole);
 
