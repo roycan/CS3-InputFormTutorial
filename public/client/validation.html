@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Validation Guide - Forms101</title>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Outfit:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar is-white" role="navigation" aria-label="main navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="index.html">
+          <span class="icon-text">
+            <span class="icon">
+              <i class="fas fa-code"></i>
+            </span>
+            <span class="has-text-weight-bold is-size-4 ml-2">Forms101</span>
+          </span>
+        </a>
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a href="index.html" class="navbar-item">Home</a>
+          <a href="forms.html" class="navbar-item">Forms Guide</a>
+          <a href="validation.html" class="navbar-item has-text-primary has-text-weight-bold">Validation Guide</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-6">
+    <div class="columns is-vcentered mb-6">
+      <div class="column is-8">
+          <h1 class="title is-2 has-text-primary">Form Validation</h1>
+          <p class="subtitle is-4">Trust, but Verify.</p>
+          <p>
+              Validation is the process of checking if the data a user entered is correct 
+              <em>before</em> we accept it. It prevents errors and security issues.
+          </p>
+      </div>
+      <div class="column is-4">
+          <img src="assets/images/concept_of_data_validation,_checkmarks_and_shields.png" class="image is-rounded shadow-sm" alt="Validation Shield">
+      </div>
+   </div>
+
+    <div class="columns">
+      <!-- Sidebar -->
+      <div class="column is-3">
+        <aside class="menu is-hidden-mobile" style="position: sticky; top: 20px;">
+          <p class="menu-label">Contents</p>
+          <ul class="menu-list">
+            <li><a href="#html5">HTML5 Validation</a></li>
+            <li><a href="#javascript">JS Validation</a></li>
+            <li><a href="#preventdefault">Stop Submission</a></li>
+            <li><a href="#logic">Checking Values</a></li>
+            <li><a href="#challenge">Final Challenge</a></li>
+          </ul>
+        </aside>
+      </div>
+      
+      <!-- Content -->
+      <div class="column is-9">
+        <div class="content box is-medium">
+          
+          <h2 class="title is-3" id="html5">1. The Easy Way: HTML5 Attributes</h2>
+          <p>
+            Modern browsers can do a lot of checking for you without writing any code! 
+            Just add special attributes to your inputs.
+          </p>
+          <ul>
+            <li><code>required</code>: The field cannot be empty.</li>
+            <li><code>minlength="5"</code>: Must be at least 5 characters.</li>
+            <li><code>max="100"</code>: Number cannot be higher than 100.</li>
+          </ul>
+
+          <!-- Playground 1 -->
+          <div class="playground-container">
+            <div class="playground-header">
+              <span class="playground-title">HTML5 Validation Demo</span>
+              <div class="buttons are-small mb-0">
+                <button class="button is-white reset-btn"><i class="fas fa-undo"></i></button>
+                <button class="button is-success is-light run-btn"><i class="fas fa-play"></i> Run</button>
+              </div>
+            </div>
+            <div class="notification is-info is-light is-radiusless mb-0 py-3 px-4 is-size-7">
+              <strong>Challenge:</strong> Try clicking Submit without typing anything. Then try typing a short name.
+            </div>
+            <div class="playground-editors">
+              <div class="editor-column">
+                <div class="editor-label">HTML</div>
+                <textarea class="code-editor editor-html"><form>
+  <label>Username (required, min 5 chars):</label>
+  <br>
+  <input type="text" required minlength="5">
+  <br><br>
+  <button>Submit</button>
+</form></textarea>
+              </div>
+            </div>
+            <div class="playground-preview-label">Preview</div>
+            <div class="playground-preview"></div>
+          </div>
+
+          <hr />
+
+          <h2 class="title is-3" id="javascript">2. The Powerful Way: JavaScript</h2>
+          <p>
+            Sometimes we need more complex rules (like checking if two passwords match). 
+            For this, we use JavaScript to intercept the form submission.
+          </p>
+
+          <h3 class="title is-4" id="preventdefault">Step A: Stop the Train!</h3>
+          <p>
+            By default, a form refreshes the page when submitted. We want to stop that so we can check the data first.
+            We use <code>event.preventDefault()</code>.
+          </p>
+
+          <!-- Playground 2 -->
+          <div class="playground-container">
+            <div class="playground-header">
+              <span class="playground-title">Stopping Form Submission</span>
+              <div class="buttons are-small mb-0">
+                <button class="button is-white reset-btn"><i class="fas fa-undo"></i></button>
+                <button class="button is-success is-light run-btn"><i class="fas fa-play"></i> Run</button>
+              </div>
+            </div>
+            <div class="playground-editors">
+              <div class="editor-column">
+                <div class="editor-label">HTML</div>
+                <textarea class="code-editor editor-html"><form onsubmit="checkForm(event)">
+  <input type="text" placeholder="Type here...">
+  <button>Submit (Watch Console)</button>
+</form></textarea>
+              </div>
+              <div class="editor-column">
+                <div class="editor-label">JavaScript</div>
+                <textarea class="code-editor editor-js">function checkForm(event) {
+  // 1. Stop the page reload
+  event.preventDefault();
+  
+  // 2. Log a message
+  console.log("Form submission stopped! We can now check data.");
+}</textarea>
+              </div>
+            </div>
+            <div class="playground-preview-label">Preview</div>
+            <div class="playground-preview"></div>
+            <div class="playground-console"></div>
+          </div>
+
+          <h3 class="title is-4" id="logic">Step B: Checking the Data</h3>
+          <p>
+            Now that we stopped the form, we can look at what the user typed.
+            We need to:
+          </p>
+          <ol>
+            <li>Give the input an <code>id</code> so we can find it.</li>
+            <li>Use <code>document.getElementById('...').value</code> to get the text.</li>
+            <li>Use an <code>if</code> statement to check it.</li>
+          </ol>
+
+          <!-- Playground 3 -->
+          <div class="playground-container">
+            <div class="playground-header">
+              <span class="playground-title">Full Validation Example</span>
+              <div class="buttons are-small mb-0">
+                <button class="button is-white reset-btn"><i class="fas fa-undo"></i></button>
+                <button class="button is-success is-light run-btn"><i class="fas fa-play"></i> Run</button>
+              </div>
+            </div>
+            <div class="playground-editors" style="height: 400px;">
+              <div class="editor-column">
+                <div class="editor-label">HTML</div>
+                <textarea class="code-editor editor-html"><form onsubmit="validateLogin(event)">
+  <label>Secret Password:</label>
+  <input type="password" id="secret-pass">
+  <button>Login</button>
+  <p id="error-msg" style="color: red;"></p>
+</form></textarea>
+              </div>
+              <div class="editor-column">
+                <div class="editor-label">JavaScript</div>
+                <textarea class="code-editor editor-js">function validateLogin(event) {
+  event.preventDefault(); // Stop reload
+  
+  // Get the value from the input box
+  let password = document.getElementById("secret-pass").value;
+  
+  // Check if it's correct
+  if (password === "pizza") {
+    console.log("Access Granted!");
+    alert("Access Granted!");
+  } else {
+    console.log("Access Denied: Wrong password.");
+    // Show error on screen
+    document.getElementById("error-msg").innerText = "Wrong password! Try 'pizza'";
+  }
+}</textarea>
+              </div>
+            </div>
+            <div class="playground-preview-label">Preview</div>
+            <div class="playground-preview"></div>
+            <div class="playground-console"></div>
+          </div>
+
+          <h2 class="title is-3" id="challenge">3. Final Challenge: The Age Gate</h2>
+          <div class="notification is-info is-light">
+            <strong>Mission:</strong> create a <code>validateAge()</code> function.
+            <ol>
+                <li>Get the value from the age input.</li>
+                <li>If age is less than 18, show an alert saying "You are too young!".</li>
+                <li>If age is 18 or older, show an alert saying "Welcome!".</li>
+            </ol>
+          </div>
+
+          <!-- Playground 4 (Challenge) -->
+          <div class="playground-container">
+            <div class="playground-header">
+              <span class="playground-title">Age Validation Challenge</span>
+              <div class="buttons are-small mb-0">
+                <button class="button is-white reset-btn"><i class="fas fa-undo"></i></button>
+                <button class="button is-success is-light run-btn"><i class="fas fa-play"></i> Run</button>
+              </div>
+            </div>
+            <div class="playground-editors" style="height: 400px;">
+              <div class="editor-column">
+                <div class="editor-label">HTML</div>
+                <textarea class="code-editor editor-html"><form onsubmit="validateAge(event)">
+  <label>Enter your age:</label>
+  <input type="number" id="user-age">
+  <button>Enter Site</button>
+</form></textarea>
+              </div>
+              <div class="editor-column">
+                <div class="editor-label">JavaScript</div>
+                <textarea class="code-editor editor-js">function validateAge(event) {
+  event.preventDefault();
+  
+  // 1. Get the value (hint: document.getElementById)
+  let ageInput = document.getElementById("user-age").value;
+  
+  // 2. Check the number (hint: if statement)
+  // Write your code below...
+  
+  console.log("User typed:", ageInput);
+}</textarea>
+              </div>
+            </div>
+            <div class="playground-preview-label">Preview</div>
+            <div class="playground-preview"></div>
+            <div class="playground-console"></div>
+          </div>
+          
+           <div class="has-text-centered mt-6">
+            <a href="index.html" class="button is-text">
+              &larr; Back to Home
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Forms Guide - Forms101</title>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Outfit:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar is-white" role="navigation" aria-label="main navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="index.html">
+          <span class="icon-text">
+            <span class="icon">
+              <i class="fas fa-code"></i>
+            </span>
+            <span class="has-text-weight-bold is-size-4 ml-2">Forms101</span>
+          </span>
+        </a>
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a href="index.html" class="navbar-item">Home</a>
+          <a href="forms.html" class="navbar-item has-text-primary has-text-weight-bold">Forms Guide</a>
+          <a href="validation.html" class="navbar-item">Validation Guide</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-6">
+    <div class="columns">
+      <!-- Sidebar -->
+      <div class="column is-3">
+        <aside class="menu is-hidden-mobile" style="position: sticky; top: 20px;">
+          <p class="menu-label">Contents</p>
+          <ul class="menu-list">
+            <li><a href="#intro">Introduction</a></li>
+            <li><a href="#structure">Form Structure</a></li>
+            <li><a href="#inputs">Input Types</a></li>
+            <li><a href="#labels">Labels Matter</a></li>
+            <li><a href="#challenge">Code Challenge</a></li>
+          </ul>
+        </aside>
+      </div>
+      
+      <!-- Content -->
+      <div class="column is-9">
+        <div class="content box is-medium">
+          <h1 class="title is-2 has-text-primary" id="intro">HTML Forms 101</h1>
+          <p class="subtitle is-5">How do websites get information from you?</p>
+          
+          <p>
+            When you log in to Instagram, search on Google, or buy something on Amazon, you are using a <strong>Form</strong>.
+            Forms are the primary way users interact with web applications.
+          </p>
+
+          <hr />
+
+          <h2 className="title is-3" id="structure">1. The Basic Structure</h2>
+          <p>
+            Every form starts with the <code>&lt;form&gt;</code> tag. Inside it, we place elements that allow users to enter data.
+          </p>
+
+          <!-- Playground 1 -->
+          <div class="playground-container">
+            <div class="playground-header">
+              <span class="playground-title">Basic Form Demo</span>
+              <div class="buttons are-small mb-0">
+                <button class="button is-white reset-btn" title="Reset Code"><i class="fas fa-undo"></i></button>
+                <button class="button is-success is-light run-btn" title="Run Code"><i class="fas fa-play"></i> Run</button>
+              </div>
+            </div>
+            <div class="playground-editors">
+              <div class="editor-column">
+                <div class="editor-label">HTML</div>
+                <textarea class="code-editor editor-html"><form>
+  <!-- A simple text box -->
+  <input type="text" placeholder="Type something here...">
+  
+  <!-- A button to submit -->
+  <button>Send!</button>
+</form></textarea>
+              </div>
+              <div class="editor-column" style="display:none;">
+                <div class="editor-label">JavaScript</div>
+                <textarea class="code-editor editor-js"></textarea>
+              </div>
+            </div>
+            <div class="playground-preview-label">Preview</div>
+            <div class="playground-preview"></div>
+          </div>
+
+
+          <h2 class="title is-3" id="inputs">2. Input Types</h2>
+          <p>
+            The <code>&lt;input&gt;</code> tag is magical. By changing its <code>type</code> attribute, it transforms into different controls.
+          </p>
+          
+          <table class="table is-striped is-fullwidth">
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>text</code></td>
+                <td>Standard one-line text box (default).</td>
+              </tr>
+              <tr>
+                <td><code>password</code></td>
+                <td>Hides the characters (dots or asterisks).</td>
+              </tr>
+              <tr>
+                <td><code>email</code></td>
+                <td>Validates that text looks like an email on mobile keyboards.</td>
+              </tr>
+              <tr>
+                <td><code>number</code></td>
+                <td>Only allows numeric input.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Playground 2 -->
+          <div class="playground-container">
+            <div class="playground-header">
+              <span class="playground-title">Try Different Input Types</span>
+              <div class="buttons are-small mb-0">
+                <button class="button is-white reset-btn"><i class="fas fa-undo"></i></button>
+                <button class="button is-success is-light run-btn"><i class="fas fa-play"></i> Run</button>
+              </div>
+            </div>
+            <div class="playground-editors" style="height: 250px;">
+              <div class="editor-column">
+                <div class="editor-label">HTML</div>
+                <textarea class="code-editor editor-html"><form>
+  <p>Username: <input type="text"></p>
+  <p>Password: <input type="password"></p>
+  <p>Age: <input type="number"></p>
+  <p>Color: <input type="color"></p>
+  <button>Sign Up</button>
+</form></textarea>
+              </div>
+            </div>
+            <div class="playground-preview-label">Preview</div>
+            <div class="playground-preview"></div>
+          </div>
+
+          <h2 class="title is-3" id="labels">3. Labels (Don't Forget Them!)</h2>
+          <p>
+            Imagine a form with 10 empty boxes and no text telling you what goes where. Nightmare, right?
+            The <code>&lt;label&gt;</code> tag tells the user what an input is for.
+          </p>
+          <p>
+            <strong>Pro Tip:</strong> Use the <code>for</code> attribute on the label and match it to the <code>id</code> of the input. 
+            This lets you click the text to focus the input!
+          </p>
+
+          <!-- Playground 3 -->
+          <div class="playground-container">
+            <div class="playground-header">
+              <span class="playground-title">Connecting Labels to Inputs</span>
+              <div class="buttons are-small mb-0">
+                <button class="button is-white reset-btn"><i class="fas fa-undo"></i></button>
+                <button class="button is-success is-light run-btn"><i class="fas fa-play"></i> Run</button>
+              </div>
+            </div>
+            <div class="playground-editors">
+              <div class="editor-column">
+                <div class="editor-label">HTML</div>
+                <textarea class="code-editor editor-html"><form>
+  <!-- Click the word "Email" in the preview -->
+  <label for="user-email">Email Address:</label>
+  <br>
+  <input type="email" id="user-email" placeholder="you@example.com">
+</form></textarea>
+              </div>
+            </div>
+            <div class="playground-preview-label">Preview</div>
+            <div class="playground-preview"></div>
+          </div>
+
+          <h2 class="title is-3" id="challenge">4. Guided Challenge: Space Club Signup</h2>
+          <div class="notification is-primary is-light">
+            <strong>Mission:</strong> Create a registration form for the "Mars Explorer Club".
+            It needs:
+            <ul>
+              <li>A text input for "Astronaut Name"</li>
+              <li>A number input for "Mission Count"</li>
+              <li>A password input for "Access Code"</li>
+              <li>A submit button that says "Launch!"</li>
+            </ul>
+          </div>
+
+          <!-- Playground 4 (Challenge) -->
+          <div class="playground-container">
+            <div class="playground-header">
+              <span class="playground-title">Mission Control Editor</span>
+              <div class="buttons are-small mb-0">
+                <button class="button is-white reset-btn"><i class="fas fa-undo"></i></button>
+                <button class="button is-success is-light run-btn"><i class="fas fa-play"></i> Run</button>
+              </div>
+            </div>
+            <div class="playground-editors" style="height: 300px;">
+              <div class="editor-column">
+                <div class="editor-label">HTML</div>
+                <textarea class="code-editor editor-html"><!-- Build your form here -->
+<form>
+  
+  
+</form></textarea>
+              </div>
+            </div>
+            <div class="playground-preview-label">Preview</div>
+            <div class="playground-preview"></div>
+          </div>
+
+          <div class="has-text-centered mt-6">
+            <p class="mb-4">Great job! Ready to make sure users type the right stuff?</p>
+            <a href="validation.html" class="button is-primary is-large is-rounded shadow-md">
+              Next: Learn Form Validation &rarr;
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

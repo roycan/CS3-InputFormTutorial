@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Forms Guide</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+<body>
+
+    <!-- Navbar for navigation -->
+    <div id="navbar"></div>
+    <script src="navbar.js"></script>
+    
+
+  <section class="section">
+    <div class="container">
+      <h1 class="title">Forms Guide</h1>
+      <p class="subtitle">Learn the basics of HTML forms.</p>
+
+      <!-- Example: Echo back input -->
+      <h2 class="title is-4">Echo Back Your Input</h2>
+      <form id="echoForm">
+        <!-- Text input -->
+        <div class="field">
+          <label class="label">Enter your name:</label>
+          <div class="control">
+            <input class="input" type="text" id="nameInput" placeholder="Type your name">
+          </div>
+        </div>
+        <div class="control">
+          <button class="button is-link" type="submit">Submit</button>
+        </div>
+      </form>
+      <p id="echoOutput" class="mt-4"></p>
+    </div>
+  </section>
+
+  <script>
+  // JavaScript: Echo back input
+  function handleEchoForm(event) {
+    event.preventDefault(); // Prevent page reload
+    var name = document.getElementById("nameInput").value;
+    var output = document.getElementById("echoOutput");
+    output.textContent = "Hello, " + name + "!";
+  }
+  // Attach function to form submit
+  document.getElementById("echoForm").addEventListener("submit", handleEchoForm);
+  </script>
+</body>
+</html>

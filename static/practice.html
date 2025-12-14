@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Practice Challenges</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+<body>
+
+     <!-- Navbar for navigation -->
+    <div id="navbar"></div>
+    <script src="navbar.js"></script>
+
+
+  <section class="section">
+    <div class="container">
+      <h1 class="title">Practice Challenges</h1>
+      <p class="subtitle">Try these guided exercises to test your skills.</p>
+
+      <!-- Challenge: Password strength -->
+      <h2 class="title is-4">Password Strength</h2>
+      <p>Make sure your password is at least 8 characters long.</p>
+      <form id="passwordForm">
+        <div class="field">
+          <label class="label">Password:</label>
+          <div class="control">
+            <input class="input" type="password" id="passwordInput" placeholder="Enter password">
+          </div>
+        </div>
+        <div class="control">
+          <button class="button is-link" type="submit">Check</button>
+        </div>
+      </form>
+      <p id="passwordOutput" class="mt-4"></p>
+    </div>
+  </section>
+
+  <script>
+  // JavaScript: Password strength check
+  function handlePasswordForm(event) {
+    event.preventDefault();
+    var password = document.getElementById("passwordInput").value;
+    var output = document.getElementById("passwordOutput");
+
+    if (password.length >= 8) {
+      output.textContent = "Strong password!";
+      output.className = "has-text-success";
+    } else {
+      output.textContent = "Password too short. Try again.";
+      output.className = "has-text-danger";
+    }
+  }
+  document.getElementById("passwordForm").addEventListener("submit", handlePasswordForm);
+  </script>
+
+
+
+<!-- ========================= -->
+<!-- Live Playground Template  -->
+<!-- ========================= -->
+
+<section class="section">
+  <div class="container">
+    <h2 class="title is-4">Live Playground: Edit and Run HTML + JavaScript</h2>
+    <p class="content">
+      Type HTML and JavaScript below. Click "Run" to see the output. Use the
+      function pattern <code>function name() {}</code> for your JS.
+    </p>
+
+    <!-- Instructions box to guide students -->
+    <article class="message is-info">
+      <div class="message-header">
+        <p>Instructions</p>
+      </div>
+      <div class="message-body">
+        - Write HTML normally (e.g., a form or a div).<br>
+        - Add JS inside &lt;script&gt;...&lt;/script&gt; tags.<br>
+        - Use <code>function myFunction() {}</code> and call it from buttons or events.<br>
+        - Example: create a button that calls <code>function greet() {}</code> and writes to the page.
+      </div>
+    </article>
+
+    <!-- Editor area: students type their code here -->
+    <div class="field">
+      <label class="label">Your Code (HTML + JS)</label>
+      <div class="control">
+        <textarea id="playgroundCode" class="textarea" rows="12"><!-- Starter example students can modify -->
+<!-- HTML area -->
+<div class="box">
+  <h3 class="title is-5">Try a simple greeter</h3>
+  <p id="output">Output will appear here.</p>
+  <button class="button is-link" onclick="greet()">Greet</button>
+</div>
+
+<!-- JavaScript area: use the function pattern -->
+<script>
+// Function: greet()
+// Purpose: Change the text content of #output to say hello
+function greet() {
+  // 1) Find the output element in the page
+  var out = document.getElementById("output");
+
+  // 2) Update the content
+  out.textContent = "Hello from your playground code!";
+
+  // 3) Optional: style changes
+  out.className = "has-text-success";
+}
+</script>
+        </textarea>
+      </div>
+    </div>
+
+    <!-- Controls: Run and Reset -->
+    <div class="buttons">
+      <button id="playgroundRun" class="button is-primary">Run</button>
+      <button id="playgroundReset" class="button is-light">Reset to starter code</button>
+    </div>
+
+    <!-- Output area: sandboxed iframe renders the student's code -->
+    <div class="box">
+      <h3 class="title is-5">Live Output</h3>
+      <!-- sandbox attributes limit what student code can do but allow scripts -->
+      <iframe id="playgroundFrame"
+              class="has-background-light"
+              style="width:100%; min-height: 280px; border: 1px solid #ddd;"
+              sandbox="allow-scripts allow-forms"></iframe>
+    </div>
+  </div>
+</section>
+
+<script>
+// ===============================
+// Live Playground Logic (Vanilla JS)
+// ===============================
+
+// Function: getStarterTemplate()
+// Purpose: Returns the default code shown in the textarea
+function getStarterTemplate() {
+  // We return the same starter code as placed in the textarea by default.
+  // Keeping it here makes resetting easy and centralized.
+  return `<!-- HTML area -->
+<div class="box">
+  <h3 class="title is-5">Try a simple greeter</h3>
+  <p id="output">Output will appear here.</p>
+  <button class="button is-link" onclick="greet()">Greet</button>
+</div>
+
+<!-- JavaScript area: use the function pattern -->
+<script>
+// Function: greet()
+// Purpose: Change the text content of #output to say hello
+function greet() {
+  // 1) Find the output element in the page
+  var out = document.getElementById("output");
+
+  // 2) Update the content
+  out.textContent = "Hello from your playground code!";
+
+  // 3) Optional: style changes
+  out.className = "has-text-success";
+}
+<\/script>`;
+}
+
+// Function: renderPlayground()
+// Purpose: Takes the code from the textarea and renders it in the iframe
+function renderPlayground() {
+  var textarea = document.getElementById("playgroundCode");
+  var iframe = document.getElementById("playgroundFrame");
+
+  // Build a minimal HTML document with Bulma styling
+  // We inject the student's code inside the body
+  var doc = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Playground Output</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+<body class="section">
+  <div class="container">
+    ${textarea.value}
+  </div>
+</body>
+</html>
+  `.trim();
+
+  // Write into the iframe using srcdoc for simplicity and safety
+  iframe.srcdoc = doc;
+}
+
+// Function: resetPlayground()
+// Purpose: Resets the textarea back to the starter code and re-renders
+function resetPlayground() {
+  var textarea = document.getElementById("playgroundCode");
+  textarea.value = getStarterTemplate();
+  renderPlayground();
+}
+
+// Function: initPlayground()
+// Purpose: Wire up buttons and render the initial state
+function initPlayground() {
+  var runBtn = document.getElementById("playgroundRun");
+  var resetBtn = document.getElementById("playgroundReset");
+
+  // Bind the Run button
+  runBtn.addEventListener("click", function() {
+    renderPlayground();
+  });
+
+  // Bind the Reset button
+  resetBtn.addEventListener("click", function() {
+    resetPlayground();
+  });
+
+  // Initial render when the page loads
+  resetPlayground();
+}
+
+// Initialize playground when the DOM is ready
+document.addEventListener("DOMContentLoaded", function() {
+  initPlayground();
+});
+</script>
+
+
+
+
+
+</body>
+</html>

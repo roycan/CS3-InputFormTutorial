@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forms 101 - Interactive Guide</title>
+  
+  <!-- Bulma CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Outfit:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar is-white" role="navigation" aria-label="main navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="index.html">
+          <span class="icon-text">
+            <span class="icon">
+              <i class="fas fa-code"></i>
+            </span>
+            <span class="has-text-weight-bold is-size-4 ml-2">Forms101</span>
+          </span>
+        </a>
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a href="index.html" class="navbar-item has-text-primary has-text-weight-bold">Home</a>
+          <a href="forms.html" class="navbar-item">Forms Guide</a>
+          <a href="validation.html" class="navbar-item">Validation Guide</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero is-medium is-white mb-6">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns is-vcentered">
+          <div class="column is-6">
+            <h1 class="title is-1 has-text-weight-bold is-spaced">
+              Master HTML Forms <br/>
+              <span class="has-text-primary">The Interactive Way</span>
+            </h1>
+            <p class="subtitle is-4 has-text-grey">
+              A high school friendly guide to building and validating web forms. 
+              Learn by doing with our live code playgrounds.
+            </p>
+            <div class="buttons">
+              <a href="forms.html" class="button is-primary is-medium is-rounded shadow-md">
+                Start Forms Tutorial
+              </a>
+              <a href="validation.html" class="button is-white is-medium is-rounded shadow-sm">
+                Learn Validation
+              </a>
+            </div>
+          </div>
+          <div class="column is-6">
+            <figure class="image is-16by9 is-rounded overflow-hidden shadow-lg">
+              <img src="assets/images/minimalist_geometric_shapes_related_to_forms_and_input.png" alt="Abstract forms illustration">
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cards Section -->
+  <section class="section has-background-light">
+    <div class="container">
+      <div class="columns is-multiline">
+        <div class="column is-4">
+          <div class="card">
+            <div class="card-content">
+              <div class="content">
+                <div class="icon is-large has-text-info mb-4">
+                  <i class="fas fa-pencil-alt fa-2x"></i>
+                </div>
+                <h3 class="title is-4">1. Build Forms</h3>
+                <p>
+                  Learn the essential HTML tags: <code>&lt;form&gt;</code>, <code>&lt;input&gt;</code>, 
+                  <code>&lt;label&gt;</code>, and <code>&lt;button&gt;</code>.
+                </p>
+              </div>
+            </div>
+            <footer class="card-footer">
+               <a href="forms.html" class="card-footer-item has-text-primary">Go to Lesson</a>
+            </footer>
+          </div>
+        </div>
+
+        <div class="column is-4">
+          <div class="card">
+            <div class="card-content">
+              <div class="content">
+                <div class="icon is-large has-text-success mb-4">
+                  <i class="fas fa-check-circle fa-2x"></i>
+                </div>
+                <h3 class="title is-4">2. Validate Data</h3>
+                <p>
+                  Stop bad data at the door! Learn how to check user input using both HTML5 attributes and JavaScript.
+                </p>
+              </div>
+            </div>
+            <footer class="card-footer">
+               <a href="validation.html" class="card-footer-item has-text-primary">Go to Lesson</a>
+            </footer>
+          </div>
+        </div>
+
+        <div class="column is-4">
+          <div class="card">
+            <div class="card-content">
+              <div class="content">
+                <div class="icon is-large has-text-warning mb-4">
+                  <i class="fas fa-code fa-2x"></i>
+                </div>
+                <h3 class="title is-4">3. Live Playground</h3>
+                <p>
+                  Experiment with code in real-time. Our interactive editors let you tweak the examples and see results instantly.
+                </p>
+              </div>
+            </div>
+            <footer class="card-footer">
+               <span class="card-footer-item has-text-grey">Available in Lessons</span>
+            </footer>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
